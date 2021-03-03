@@ -46,3 +46,6 @@ thirteenDigitProducts ls res = if (length ls) < 13
                                   then res
                                   else let (x:xs) = ls in thirteenDigitProducts xs ((multiply13digits ls):res)
 solution_8 = maximum (thirteenDigitProducts numberIntList [])
+
+-- 9 --
+solution_9 = head [a*b*c | c <- [1..], b <- [1..c], a <- [1..b], a*a + b*b == c*c && a+b+c == 1000]
