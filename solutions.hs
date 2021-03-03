@@ -24,3 +24,5 @@ incUntilTrue x predicate = if predicate x then x else incUntilTrue (x+1) predica
 solution_5 = incUntilTrue 1 (divisibleByList [1..20])
 -- alternative much better solution: foldl lcm 1 [1..20] (recursively find least common multiple)
 
+-- 6 --
+solution_6 = abs (sum [x*x | x <- [1..100]] - ((\ x -> x * x ) (sum [1..100])))
