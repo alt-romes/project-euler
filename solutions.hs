@@ -13,3 +13,6 @@ primefactors x y = if y <= x then -- @x = prime factors of n, @y = start testing
                         else primefactors x (y+1)
                     else []
 solution_3 = maximum (primefactors 600851475143 1)
+
+-- 4 --
+solution_4 = maximum [a*b | a <- [999,998..100], b <- [999,998..100], show (a*b) == reverse (show (a*b))]
