@@ -18,7 +18,7 @@ solution_3 = maximum (primefactors 600851475143 1)
 solution_4 = maximum [a*b | a <- [999,998..100], b <- [999,998..100], show (a*b) == reverse (show (a*b))]
 
 -- 5 --
--- inefficient brute force solution, takes 47s
+-- inefficient brute force solution, takes 47s when compiled
 divisibleByList l n = case l of {[x] -> (mod n x == 0); (x:xs) -> (mod n x == 0 && divisibleByList xs n)}
 incUntilTrue x predicate = if predicate x then x else incUntilTrue (x+1) predicate
 solution_5 = incUntilTrue 1 (divisibleByList [1..20])
@@ -26,3 +26,11 @@ solution_5 = incUntilTrue 1 (divisibleByList [1..20])
 
 -- 6 --
 solution_6 = abs (sum [x*x | x <- [1..100]] - ((\ x -> x * x ) (sum [1..100])))
+
+-- 7 --
+-- brute_solution_7 = last (take 10001 [x | x <- [1..], prime x])
+primeWithListOfPrimes ls x = length [y | y <- ls, mod x y == 0] == 0 -- more efficient than checking against all numbers
+listOfPrimes ls x = if primeWithListOfPrimes ls x then x:(listOfPrimes (x:ls) (x+1)) else listOfPrimes ls (x+1)
+solution_7 = last (take 10000 (listOfPrimes [] 2)) -- 10 000 bc 1 is not in the list but is the first prime
+
+main = print (solution_7)
