@@ -56,6 +56,16 @@ solution_8 = maximum (thirteenDigitProducts numberIntList [])
 solution_9 = head [a*b*c | c <- [1..], b <- [1..c], a <- [1..b], a*a + b*b == c*c && a+b+c == 1000]
 
 -- 10 --
-solution_10 = (sum (takeWhile (\x -> x < 2000000) (listOfPrimes [] 2))) + 1 -- too slow
+
+sieveMerge (x:lx) (y:ly) = let val = if x == y then x else 0 in if null lx || null ly then val:[] else val:(sieveMerge lx ly)
+
+replaceMultiples (x:ls) p i = (if mod i p == 0 && x > p && i > p then 0 else x):(if null ls then [] else replaceMultiples ls p (i+1)) -- x:ls must be an array in which the position == number (it must coincide with the array position)
+
+getNextPrimeIndexInList (x:xs) i = if x /= 0 then i else getNextPrimeIndexInList xs (i+1)
+
+sievePrimes ls x = if (x*x) < (last ls) then sieveMerge (replaceMultiples ls x 0) (sievePrimes ls (getNextPrimeIndexInList (drop (x+1) ls) (x+1))) else ls
+
+-- listOfPrimes is not performant enough, generate list of primes with Sieve of Eratosthenes
+solution_10 = (sum (sievePrimes ([0,0]++[2..2000000]) 2)) -- sievePrimes returns an array that includes 
 
 main = print solution_10
