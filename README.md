@@ -3,4 +3,4 @@
 
 ### References
 * [Project Euler](https://projecteuler.net)
-* [ghc](https://www.haskell.org/downloads/#minimal)
+* [Haskell compiler and tools](https://www.haskell.org/downloads/#minimal)
