@@ -40,8 +40,7 @@ static void solution_10() {
 
 }
 
-int main(int argc, char *argv[])
-{
-    solution_10(); 
+int main(int argc, char *argv[]) {
+
     return 0;
 }
